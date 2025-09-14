@@ -16,36 +16,43 @@
     </li>
   </ul>
 
+
   <div class="tab-content" id="formTabsContent">
     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
         <h2 class="mb-3">Login</h2>
         <div class="mb-3">
           <label for="login-email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="login-email" name="login-email" required>
+          <input type="email" formControlName="email" class="form-control" id="login-email" name="login-email" required>
+          @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <div class="text-danger">Por favor, ingrese un email válido.</div>
+          }
         </div>
         <div class="mb-3">
           <label for="login-password" class="form-label">Contraseña:</label>
-          <input type="password" class="form-control" id="login-password" name="login-password" required>
+          <input type="password" formControlName="password" class="form-control" id="login-password" name="login-password" required>
+          @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <div class="text-danger">La contraseña es obligatoria</div>
+          }
         </div>
         <button type="submit" class="btn btn-primary w-100">Ingresar</button>
       </form>
     </div>
 
     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
         <h2 class="mb-3">Registro</h2>
         <div class="mb-3">
-          <label for="register-name" class="form-label">Nombre:</label>
-          <input type="text" class="form-control" id="register-name" name="register-name" required>
+          <label for="register-username" class="form-label">Nombre:</label>
+          <input type="text" formControlName="username" class="form-control" id="register-username" name="register-username" required>
         </div>
         <div class="mb-3">
           <label for="register-email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="register-email" name="register-email" required>
+          <input type="email" formControlName="email" class="form-control" id="register-email" name="register-email" required>
         </div>
         <div class="mb-3">
           <label for="register-password" class="form-label">Contraseña:</label>
-          <input type="password" class="form-control" id="register-password" name="register-password" required>
+          <input type="password" formControlName="password" class="form-control" id="register-password" name="register-password" required>
         </div>
         <button type="submit" class="btn btn-success w-100">Registrarse</button>
       </form>
