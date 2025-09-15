@@ -21,7 +21,6 @@
                 <td>{{ skill.name }}</td>
                 <td>{{ skill.category }}</td>
                 <td>{{ skill.goal }}</td>
-                <td>{{ skill.progress }}%</td>
                 <td>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" [style.width.%]="skill.progress">
@@ -37,9 +36,8 @@
                     </ul>
                 </td>
                 <td>
-                  <!--   <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="openEditModal(skill)">Editar</button>-->
-                   <!-- <button class="btn btn-danger btn-sm" (click)="deleteSkill(skill.id)">Eliminar</button>
--->
+                  <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="openEditModal(skill)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteSkill(skill.id)">Eliminar</button>
                 </td>
             </tr>
       </table>
@@ -56,7 +54,17 @@
       <div class="modal-body">
         <form>
           <input type="text" class="form-control mb-2" placeholder="Nombre" [(ngModel)]="newSkill.name" name="name">
-          <input type="text" class="form-control mb-2" placeholder="Categoría" [(ngModel)]="newSkill.category" name="category">
+          <select class="form-select mb-2" [(ngModel)]="newSkill.category" name="category">
+            <option>Programación</option>
+            <option>Diseño</option>
+            <option>Marketing</option>
+            <option>Idiomas</option>
+            <option>Comunicacion</option>
+            <option>Gestión de Proyectos</option>
+            <option>Desarrollo Personal</option>
+            <option>Finanzas</option>
+            <option>Otros</option>
+          </select>
           <input type="text" class="form-control mb-2" placeholder="Meta" [(ngModel)]="newSkill.goal" name="goal">
           <textarea class="form-control mb-2" placeholder="Descripción" [(ngModel)]="newSkill.description" name="description"></textarea>
           <select class="form-select mb-2" [(ngModel)]="newSkill.status" name="status">
@@ -70,8 +78,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="closeAddModal" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <!--        <button type="button" class="btn btn-success" (click)="addSkill()">Guardar</button>
--->
+        <button type="button" class="btn btn-success" (click)="addSkill()">Guardar</button>
       </div>
     </div>
   </div>
@@ -88,7 +95,17 @@
       <div class="modal-body">
         <form>
           <input type="text" class="form-control mb-2" [(ngModel)]="editSkillData.name" name="editName">
-          <input type="text" class="form-control mb-2" [(ngModel)]="editSkillData.category" name="editCategory">
+          <select class="form-select mb-2" [(ngModel)]="editSkillData.category" name="editCategory">
+            <option>Programación</option>
+            <option>Diseño</option>
+            <option>Marketing</option>
+            <option>Idiomas</option>
+            <option>Comunicacion</option>
+            <option>Gestión de Proyectos</option>
+            <option>Desarrollo Personal</option>
+            <option>Finanzas</option>
+            <option>Otros</option>
+          </select>
           <input type="text" class="form-control mb-2" [(ngModel)]="editSkillData.goal" name="editGoal">
           <textarea class="form-control mb-2" [(ngModel)]="editSkillData.description" name="editDescription"></textarea>
           <select class="form-select mb-2" [(ngModel)]="editSkillData.status" name="editStatus">
@@ -102,7 +119,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="closeEditModal" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <!--<button type="button" class="btn btn-primary" (click)="updateSkill()">Guardar Cambios</button>-->
+        <button type="button" class="btn btn-primary" (click)="updateSkill()">Guardar Cambios</button>
       </div>
     </div>
   </div>
