@@ -1,0 +1,42 @@
+
+@if (book) {
+
+  <div class="container mt-4">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Autor:</strong> {{ book.author }}</p>
+    <p><strong>Género:</strong> {{ book.genre }}</p>
+    <p><strong>Estado:</strong> <span class="badge bg-info">{{ book.status }}</span></p>
+
+    @if (book.coverUrl) {
+
+      <div class="text-center">
+        <img [src]="book.coverUrl" alt="Portada" class="img-fluid my-3" style="max-width: 200px;" />
+      </div>
+    }
+
+    @if (book.description) {
+
+      <p><strong>Descripción:</strong> {{ book.description }}</p>
+
+    }
+    @if (book.notes) {
+
+      <p><strong>Notas:</strong> {{ book.notes }}</p>
+    }
+
+    @if (book.skills?.length) {
+
+      <div>
+        <h5>Habilidades relacionadas:</h5>
+        @for (skill of book.skills; track $index) {}
+        <ul>
+          <li>skill</li>
+        </ul>
+      </div>
+    }
+
+    <button class="btn btn-secondary mt-3" (click)="router.navigate(['/home'])">
+      ← Volver a la lista
+    </button>
+  </div>
+}
