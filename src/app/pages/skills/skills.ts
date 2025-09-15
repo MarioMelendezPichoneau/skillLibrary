@@ -8,31 +8,31 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-skills',
   imports: [CommonModule, FormsModule],
   templateUrl: './skills.html',
-  styleUrl: './skills.css'
+  styleUrl: './skills.css',
 })
 export class Skills implements OnInit {
-skills: Skill[] = [];
-newSkill: Skill = this.resetSkill();
-editSkillData: Skill | null = null;
+  skills: Skill[] = [];
+  newSkill: Skill = this.resetSkill();
+  editSkillData: Skill | null = null;
 
-constructor(private skillService: SkillService) {}
+  constructor(private skillService: SkillService) {}
 
-ngOnInit(): void {
-  this.loadSkills();
-}
-loadSkills() {
+  ngOnInit(): void {
+    this.loadSkills();
+  }
+  loadSkills() {
     this.skills = this.skillService.getSkills();
   }
-resetSkill(): Skill {
-    return { id: 0, 
+  resetSkill(): Skill {
+    return {
+      id: 0,
       name: '',
       category: '',
       goal: '',
       progress: 0,
       status: 'Por empezar',
       description: '',
-      books: []
+      books: [],
     };
   }
 }
-

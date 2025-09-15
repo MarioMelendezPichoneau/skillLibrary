@@ -5,6 +5,7 @@ import { Login } from './pages/login/login';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Books } from './pages/books/books';
 import { Skills } from './pages/skills/skills';
+import { BookDetail } from './pages/book-detail/book-detail';
 
 export const routes: Routes = [
 
@@ -34,5 +35,9 @@ export const routes: Routes = [
         component: Skills
       }
     ]
+  },
+  {
+    path: 'books/:id',
+    component: BookDetail
   }
 ];

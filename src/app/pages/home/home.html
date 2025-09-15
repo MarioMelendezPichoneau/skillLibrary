@@ -11,7 +11,7 @@
           <p class="card-text">{{item.description}}</p>
           <p><strong>{{item.status}}</strong></p>
 
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
+          <a [routerLink]="['/books', item.id]" class="btn btn-primary">Ver Detalles</a>
         </div>
       </div>
 
