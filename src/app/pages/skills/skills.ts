@@ -36,8 +36,6 @@ export class Skills implements OnInit {
       books: [],
     };
   }
-<<<<<<< HEAD
-=======
 
   addSkill(){
    if(!this.newSkill.name.trim()){
@@ -57,10 +55,10 @@ export class Skills implements OnInit {
   this.loadSkills();
   Swal.fire('Éxito', 'Habilidad agregada correctamente', 'success');
 
-  this.newSkill = this.resetSkill(); 
-  (document.getElementById('closeAddModal') as HTMLElement)?.click(); 
+  this.newSkill = this.resetSkill();
+  (document.getElementById('closeAddModal') as HTMLElement)?.click();
 }
- 
+
 openEditModal(skill: Skill){
     this.editSkillData = { ...skill };
   }
@@ -104,5 +102,4 @@ Swal.fire({
     }
   });
   }
->>>>>>> acbeedb9042ad4574239d3e816995e91249ca574
 }

@@ -14,8 +14,6 @@ export class SkillService {
   private isBrowser(): boolean {
     return typeof window !== 'undefined' && !!window.localStorage;
   }
-<<<<<<< HEAD
-=======
 
   private saveSkills(skills: Skill[]): void {
     if (this.isBrowser()) {
@@ -23,7 +21,6 @@ export class SkillService {
     }
   }
 
->>>>>>> acbeedb9042ad4574239d3e816995e91249ca574
   getSkills(): Skill[] {
     if (this.isBrowser()) {
       const data = localStorage.getItem(this.storageKey);
@@ -37,7 +34,7 @@ export class SkillService {
 
   addSkill(skill: Skill): void {
     const skills= this.getSkills();
-    //esto es para generar un id unico 
+    //esto es para generar un id unico
     const newId= skills.length > 0 ? Math.max(...skills.map(s => s.id)) + 1 : 1;
     skill.id = newId;
     skills.push(skill);
@@ -46,7 +43,7 @@ export class SkillService {
 
   updateSkill(updateSkill: Skill): void {
     let skills = this.getSkills();
-    skills = skills.map(s => s.id === updateSkill.id ? updateSkill : s);  
+    skills = skills.map(s => s.id === updateSkill.id ? updateSkill : s);
     this.saveSkills(skills);
   }
 
