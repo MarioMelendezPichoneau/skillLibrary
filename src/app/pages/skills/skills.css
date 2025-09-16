@@ -1,0 +1,54 @@
+.table-custom {
+  background-color: #0A2463 !important;
+}
+.text-primary {
+  color: #0A2463 !important;
+  
+}
+.bg-primary {
+    background-color: #0A2463 !important;
+}
+.card-header {
+  background-color: #0A2463 !important;
+}
+
+.table thead th {
+  text-align: center;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.progress {
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #0A2463;
+  border-color: #0A2463;
+}
+
+.btn-primary:hover {
+  background-color: #3f88c5;
+  border-color: #3f88c5;
+}

@@ -1,0 +1,87 @@
+<div class="mb-3">
+  <h5>Agregar Actividad</h5>
+  <form (ngSubmit)="addActivity()">
+    <div class="row g-2">
+      <div class="col-md-6">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Título de la actividad"
+          [(ngModel)]="newActivity.title" 
+          name="title" 
+          required>
+      </div>
+
+      <div class="col-md-6">
+        <input 
+          type="date" 
+          class="form-control" 
+          [(ngModel)]="newActivity.date" 
+          name="date" 
+          required>
+      </div>
+
+      <div class="col-md-6">
+        <input 
+          type="number" 
+          class="form-control" 
+          placeholder="Duración (min)" 
+          [(ngModel)]="newActivity.duration" 
+          name="duration" 
+          min="1" 
+          required>
+      </div>
+
+      <div class="col-md-6">
+        <textarea
+          class="form-control"
+          placeholder="Descripción"
+          [(ngModel)]="newActivity.description"
+          name="description"
+          rows="2"></textarea>
+      </div>
+
+      <div class="col-md-2 mt-2 d-flex align-items-center">
+        <div class="form-check me-2">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            [(ngModel)]="newActivity.completed" 
+            name="completed">
+          <label class="form-check-label">Completado</label>
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Agregar</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="mt-4">
+  <h5>Actividades registradas</h5>
+  <ul class="list-group">
+    <li 
+      class="list-group-item d-flex justify-content-between align-items-center" 
+      *ngFor="let activity of activities">
+
+      <div>
+        <strong>{{ activity.title }}</strong>  
+        <span class="text-muted">({{ activity.date | date:'yyyy-MM-dd' }})</span>  
+        <br>
+        {{ activity.duration }} min - {{ activity.description }}
+        <br>
+        <span class="badge" [ngClass]="activity.completed ? 'bg-success' : 'bg-secondary'">
+          {{ activity.completed ? 'Completada' : 'Pendiente' }}
+        </span>
+      </div>
+
+      <div>
+        <button class="btn btn-sm btn-outline-primary me-1" (click)="editActivity(activity)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteActivity(activity.id)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
