@@ -5,33 +5,49 @@ import { CommonModule } from '@angular/common';
 import { BookService } from '../../services/book-service';
 import { Subscription } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { Skill } from '../model/skill';
+import { SkillService } from '../../services/SkillService';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
 
   libros: Book[] = [];
+  librosFiltrados: Book[] = [];
+
+  habilidades: Skill[] = [];
+  filtroTitulo: string = '';
 
   private sub!:Subscription;
 
   private Bookservices = inject(BookService);
+  private Skillservices = inject(SkillService);
 
   ngOnInit() {
 
-    this.sub = this.Bookservices.books$.subscribe(books => {
+    this.sub = this.Bookservices.books$.subscribe((books: Book[]) => {
       this.libros = books;
+      this.librosFiltrados = books.slice(0, 8);
     });
    // this.libros = this.Bookservices.getBooks();
+    this.habilidades = this.Skillservices.getSkills();
   }
 
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
   }
 
+  filtrarLibros() {
+  const texto = this.filtroTitulo.toLowerCase();
+  this.librosFiltrados = this.libros
+    .filter(libro => libro.title.toLowerCase().includes(texto))
+    .slice(0, 8);
+}
 
   /*libros: Book[] = [
     { id: 1, title: 'El Quijote', author: 'Miguel de Cervantes', genre: 'Novela', status: 'Leido', coverUrl: 'https://url-shortener.me/4EA3', description: 'Una novela clásica de la literatura española.' },
