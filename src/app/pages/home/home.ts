@@ -8,7 +8,9 @@ import { RouterModule } from '@angular/router';
 import { Skill } from '../model/skill';
 import { SkillService } from '../../services/SkillService';
 import { FormsModule } from '@angular/forms';
-
+import {Activity} from "../model/activity";
+import { ActivityService } from '../../services/activityService';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   imports: [CommonModule, RouterModule, FormsModule],
@@ -23,10 +25,17 @@ export class Home {
   habilidades: Skill[] = [];
   filtroTitulo: string = '';
 
+  actividades: Activity[] = [];
   private sub!:Subscription;
 
   private Bookservices = inject(BookService);
-  private Skillservices = inject(SkillService);
+  private skillService = inject(SkillService);
+  private activityService = inject(ActivityService);
+  private router = inject(Router);
+
+  skillFilter: string = '';
+  activityFilter: string = '';
+
 
   ngOnInit() {
 
@@ -35,7 +44,8 @@ export class Home {
       this.librosFiltrados = books.slice(0, 8);
     });
    // this.libros = this.Bookservices.getBooks();
-    this.habilidades = this.Skillservices.getSkills();
+    this.habilidades = this.skillService.getSkills();
+    this.actividades = this.activityService.getActivities();
   }
 
   ngOnDestroy(): void {
@@ -48,7 +58,23 @@ export class Home {
     .filter(libro => libro.title.toLowerCase().includes(texto))
     .slice(0, 8);
 }
+get filteredSkills(): Skill[] {
+  if(!this.skillFilter)  return this.habilidades;
+  return this.habilidades.filter(skill =>
+    skill.name.toLowerCase().includes(this.skillFilter.toLowerCase())
+  );
+}
+get filteredActivities(): Activity[] {
+  if(!this.activityFilter)  return this.actividades;
+  return this.actividades.filter(activity =>
+    activity.title.toLowerCase().includes(this.activityFilter.toLowerCase()) ||
+    activity.description?.toLowerCase().includes(this.activityFilter.toLowerCase())
+  );
+}
 
+goToSkills() {
+  this.router.navigate(['/dashboard/skills']);
+}
   /*libros: Book[] = [
     { id: 1, title: 'El Quijote', author: 'Miguel de Cervantes', genre: 'Novela', status: 'Leido', coverUrl: 'https://url-shortener.me/4EA3', description: 'Una novela clásica de la literatura española.' },
     { id: 2, title: 'Cien años de soledad', author: 'Gabriel García Márquez', genre: 'Novela', status: 'Pendiente', coverUrl: 'https://url-shortener.me/4E9X', description: 'Una obra maestra del realismo mágico.' },
